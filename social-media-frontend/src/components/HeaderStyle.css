@@ -6,6 +6,11 @@
   border-radius: 10px;
   display: flex;
   justify-content: space-between;
+  position: fixed;
+  top: 0;
+  margin-top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
 }
 .light-nav{
   background-color: rgb(71, 66, 66);

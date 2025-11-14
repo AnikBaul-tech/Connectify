@@ -1,0 +1,36 @@
+.taskbar{
+  height:100px;
+  width: 60%;
+  padding: 10px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-bottom: 20px;
+}
+
+.taskbar-elements{
+  height: 40px;
+  width: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgb(228, 212, 212);
+  font-size: 30px;
+}
+
+.taskbar-dark{
+  background-color: rgb(0, 0, 0);
+  border: 1px solid white;
+  color: white;
+}
+
+.taskbar-light{
+  background-color: rgb(71, 66, 66);
+  border: 1px solid rgb(206, 195, 195);
+  color: rgb(10, 10, 10);
+}
