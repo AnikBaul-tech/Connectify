@@ -13,9 +13,9 @@ const Header = () => {
             <div className={darkMode ? `nav-bar dark-nav` : `nav-bar light-nav`}>
                 <div className="nav-left">
                     <div id="three-dots"><FontAwesomeIcon icon={faAnglesRight} /></div>
-                    <div id="logo">
+                    <a href='/' id="logo">
                         <img src="/logo/social-media-logo.png" alt="Social Media Logo" />
-                    </div>
+                    </a>
                 </div>
                 <div className="nav-right">
                     <div id="toggle-button">
