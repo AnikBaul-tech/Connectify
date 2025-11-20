@@ -9,7 +9,7 @@ const Taskbar = () => {
   return (
     <div className={darkMode?`taskbar taskbar-dark`:`taskbar taskbar-light`}>
         <div id="home" className='taskbar-elements'>
-            <FontAwesomeIcon icon={faHouse} />
+            <a href="/"><FontAwesomeIcon icon={faHouse} /></a>
         </div>
         <div id="live" className='taskbar-elements'>
             <FontAwesomeIcon icon={faWifi} />

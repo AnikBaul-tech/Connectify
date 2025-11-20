@@ -1,5 +1,5 @@
 .home-page{
-  min-height: 100vh;
+  height: 120vh;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -10,4 +10,124 @@
 }
 .dark-page{
   background: linear-gradient(45deg,rgb(43, 42, 42),black);
+}
+
+.post-container{
+  max-height: 75vh;
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: nowrap;
+  overflow-y: auto;
+  padding: 10px;
+  margin: 0px auto 0px auto;
+  gap: 20px;
+  mask-image: linear-gradient(to bottom, black 90%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, black 90%, transparent 100%);
+
+}
+
+.post-container::-webkit-scrollbar{
+    display: none;
+}
+
+.unit-post{
+  height: 550px;
+  width: min(650px,65%);
+  display: flex;
+  flex-shrink: 0;
+  flex-direction: column;
+  margin: 10px auto 60px auto;
+  border-radius: 10px;
+}
+.black-border{
+  border: 1px solid black;
+}
+
+.white-border{
+  border: 1px solid white;
+}
+
+.posted-by-det{
+  height: 10%;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  gap: 20px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  font-weight: 500;
+}
+#profile-pic-container{
+  height: 40px;
+  width: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto 10px;
+}
+
+#profile-pic-container img{
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+}
+
+#acc-postdate-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+ 
+}
+
+.post-det{
+  height: 75%;
+  width: 100%;
+  background-color: rgb(225, 225, 186);
+  box-shadow: inset 8px 8px 12px rgb(114, 110, 110);
+}
+
+.post-det img{
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+}
+
+.post-caption{
+  height: max(10%,max-content);
+  width: 100%;
+  padding: 10px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.post-action-container{
+  height: max(10%,max-content);
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 25px;
+  padding: 8px 8px 8px 20px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.post-action-dark{
+  color: white;
+}
+
+.post-action-light{
+  color: black;
+}
+.post-all-actions{
+  font-size: 22px;
+}
+
+.gradient-text {
+  background: linear-gradient(30deg,rgb(55, 93, 182),rgb(206, 28, 206));
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }

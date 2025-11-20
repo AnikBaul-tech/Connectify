@@ -1,6 +1,6 @@
 .taskbar{
   height:80px;
-  width: 20%;
+  width: max(20%,max-content);
   padding: 20px 10px;
   border-radius: 10px;
   display: flex;
@@ -32,4 +32,9 @@
   background-color: rgb(71, 66, 66);
   border: 1px solid rgb(206, 195, 195);
   color: rgb(10, 10, 10);
+}
+
+a{
+  text-decoration: none;
+  color: white;
 }

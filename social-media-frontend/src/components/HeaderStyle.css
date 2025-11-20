@@ -1,6 +1,5 @@
-
 .nav-bar{
-  height:100px;
+  height:80px;
   width: 100%;
   padding: 10px;
   border-radius: 10px;
@@ -67,6 +66,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
 }
 
 #toggle-button svg,
