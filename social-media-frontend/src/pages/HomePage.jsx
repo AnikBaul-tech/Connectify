@@ -8,7 +8,8 @@ import { faThumbsUp, faComments, faShare } from '@fortawesome/free-solid-svg-ico
 import './HomePageStyle.css'
 
 const HomePage = () => {
-    const {darkMode} = useContext(DarkModeContext);
+
+  const {darkMode} = useContext(DarkModeContext);
   return (
     <div className={darkMode ? `home-page dark-page` : `home-page light-page`}>
         <Header/>
@@ -28,19 +29,24 @@ const HomePage = () => {
             <div className='post-det'>
               <img src="./profile-pics/6.jpg" alt="" />
             </div>
-            <div className="post-caption">
-              llhbg 
-            </div>
-            <div className="post-action-container">
-              <a href=""><div className={darkMode?"post-all-actions post-action-dark":"post-all-actions post-action-light"} id="like"><FontAwesomeIcon icon={faThumbsUp} /></div></a>
-              <a href=""><div className={darkMode?"post-all-actions post-action-dark":"post-all-actions post-action-light"} id="comment"><FontAwesomeIcon icon={faComments} /></div></a>
-              <a href=""><div className={darkMode?"post-all-actions post-action-dark":"post-all-actions post-action-light"} id="share"><FontAwesomeIcon icon={faShare} /></div></a>
+            <div className="unit-post-bottom">
+              <div className={darkMode?"post-caption post-action-dark":"post-caption post-action-light"}>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo, voluptatibus inventore tenetur libero est odit quas maxime iusto nam, nihil minus laborum nostrum nobis facere. Error et ut corporis voluptatum?</p>
+              </div>
+              <div className="post-action-container">
+                <a href=""><div className={darkMode?"post-all-actions post-action-dark":"post-all-actions post-action-light"} id="like"><FontAwesomeIcon icon={faThumbsUp} /></div></a>
+                <a href=""><div className={darkMode?"post-all-actions post-action-dark":"post-all-actions post-action-light"} id="comment"><FontAwesomeIcon icon={faComments} /></div></a>
+                <a href=""><div className={darkMode?"post-all-actions post-action-dark":"post-all-actions post-action-light"} id="share"><FontAwesomeIcon icon={faShare} /></div></a>
+              </div>
             </div>
           </div>
+          
         </div>
         <Taskbar />
     </div>
+    
   )
+  
 }
 
 export default HomePage
