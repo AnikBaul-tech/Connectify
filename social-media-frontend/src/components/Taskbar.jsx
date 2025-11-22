@@ -1,4 +1,5 @@
 import React,{useContext} from 'react'
+import {Link} from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHouse,faWifi,faImage,faComment } from '@fortawesome/free-solid-svg-icons'
 import { DarkModeContext } from '../context/DarkModeContext.jsx'
@@ -9,7 +10,7 @@ const Taskbar = () => {
   return (
     <div className={darkMode?`taskbar taskbar-dark`:`taskbar taskbar-light`}>
         <div id="home" className='taskbar-elements'>
-            <a href="/"><FontAwesomeIcon icon={faHouse} /></a>
+            <Link to="/"><FontAwesomeIcon icon={faHouse} /></Link>
         </div>
         <div id="live" className='taskbar-elements'>
             <FontAwesomeIcon icon={faWifi} />

@@ -1,5 +1,4 @@
-import { Routes, Route } from "react-router";
-import HomePage from "./pages/HomePage";
+import AppRoutes from './pages/Routes/AppRoutes';
 import './App.css'
 import { DarkModeProvider } from "./context/DarkModeContext";
 function App() {
@@ -7,9 +6,7 @@ function App() {
   return (
     <>
     <DarkModeProvider>
-      <Routes>
-          <Route index element={<HomePage/>} />
-      </Routes>
+      <AppRoutes />
      </DarkModeProvider>
     </>
   )

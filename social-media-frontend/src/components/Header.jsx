@@ -1,4 +1,5 @@
 import React,{ useContext } from 'react'
+import {Link} from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAnglesRight,faToggleOn,faToggleOff } from '@fortawesome/free-solid-svg-icons'
 import { DarkModeContext } from '../context/DarkModeContext.jsx'
@@ -13,9 +14,9 @@ const Header = () => {
             <div className={darkMode ? `nav-bar dark-nav` : `nav-bar light-nav`}>
                 <div className="nav-left">
                     <div id="three-dots"><FontAwesomeIcon icon={faAnglesRight} /></div>
-                    <a href='/' id="logo">
+                    <Link to='/' id="logo">
                         <img src="/logo/social-media-logo.png" alt="Social Media Logo" />
-                    </a>
+                    </Link>
                 </div>
                 <div className="nav-right">
                     <div id="toggle-button">
