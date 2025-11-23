@@ -5,14 +5,12 @@ import "./LoginStyle.css";
 
 const Login = () => {
   const [mode, setMode] = useState("text"); // "text" | "login" | "register"
-  
 
   const openLogin = () => setMode("login");
   const openRegister = () => setMode("register");
   const backToText = () => setMode("text");
 
   const isText = mode === "text";
-  // eslint-disable-next-line no-unused-vars
   const isLogin = mode === "login";
   const isRegister = mode === "register";
 
@@ -55,7 +53,7 @@ const Login = () => {
               className="showcase-box-video"
             ></video>
             <div className="video-caption caption-1">
-                <p>Connect with your friends in real time.</p>
+              <p>Connect with your friends in real time.</p>
             </div>
           </div>
           <div className="box2">
@@ -68,7 +66,7 @@ const Login = () => {
               className="showcase-box-video"
             ></video>
             <div className="video-caption caption-2 ">
-                <p>Share your colourful creations with everyone.</p>
+              <p>Share your colourful creations with everyone.</p>
             </div>
           </div>
           <div className="box3">
@@ -81,7 +79,7 @@ const Login = () => {
               className="showcase-box-video"
             ></video>
             <div className="video-caption caption-3 ">
-                <p>Stay connected with your team at work.</p>
+              <p>Stay connected with your team at work.</p>
             </div>
           </div>
         </div>
@@ -90,8 +88,7 @@ const Login = () => {
           <div
             className={`panel-content ${
               isText ? "panel-visible" : `panel-hidden`
-            }`
-        }
+            }`}
           >
             <h2>
               Welcome to Connecify.com — the space where minds shine in colour.
@@ -121,13 +118,55 @@ const Login = () => {
                 navigate("/");
               }}
             >
-              <h2 >{isRegister ? "Create Account" : "Log In"}</h2>
-              <input type="email" placeholder="Email" required />
-              <input type="password" placeholder="Password" required />
+              <h2>{isRegister ? "Create Account" : "Log In"}</h2>
+              {isRegister && (
+                <input
+                  type="text"
+                  placeholder="Username: John Doe"
+                  style={{ width: "60%" }}
+                  required
+                />
+              )}
+              {isRegister && (
+                <input
+                  type="number"
+                  placeholder="age: 22"
+                  style={{ width: "30%" }}
+                  required
+                />
+              )}
+              <input
+                type="email"
+                placeholder="email: JohnDoe@gmail.com"
+                style={{ width: "95%" }}
+                required
+              />
+               {isLogin && <input
+                type="password"
+                placeholder="Password"
+                style={{ width: "95%" }}
+                required
+              />}
+              {isRegister && <input
+                type="password"
+                placeholder="Password"
+                style={{ width: "40%" }}
+                required
+              />}
+             
               {isRegister && (
                 <input
                   type="password"
                   placeholder="Confirm Password"
+                  style={{ width: "50%" }}
+                  required
+                />
+              )}
+              {isRegister && (
+                <input
+                  type="text"
+                  placeholder="Contact number: +91 **** *** ***"
+                  style={{ width: "95%" }}
                   required
                 />
               )}
