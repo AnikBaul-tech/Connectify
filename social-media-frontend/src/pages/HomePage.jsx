@@ -30,6 +30,7 @@ const HomePage = () => {
         <Header/>
         <StroryContainer/>
         <div className="post-container">
+          <Link to="/user/login">Log</Link>
           <div className={darkMode ? `unit-post white-border` : `unit-post black-border`}>
             <div className="posted-by-det">
               <div id="profile-pic-container">

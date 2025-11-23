@@ -58,6 +58,7 @@
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   font-weight: 600;
+  flex: 1 1 auto;
 }
 #profile-pic-container{
   height: 40px;
@@ -143,4 +144,66 @@
   background: linear-gradient(30deg,rgb(55, 93, 182),rgb(206, 28, 206));
   background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+/* =========================
+   MOBILE / SMALL SCREENS
+   ========================= */
+@media (max-width: 768px) {
+  .home-page {
+    height: auto;                 /* let content decide height */
+    padding: 10px;                /* a bit tighter on mobile */
+  }
+
+  .post-container {
+    width: 100%;                  /* full width on mobile */
+    height: auto;                 /* no fixed viewport height */
+    max-height: none;
+    margin: 0 auto;
+    padding: 10px 0 20px 0;
+    mask-image: none;             /* remove fade mask on mobile */
+    -webkit-mask-image: none;
+  }
+
+  .unit-post {
+    width: 100%;                  /* card uses full width */
+    margin: 10px auto 30px auto;
+  }
+
+  .posted-by-det {
+    padding: 8px 10px;
+    gap: 10px;
+    font-weight: 600;
+  }
+
+  #profile-pic-container {
+    margin: auto 4px;
+  }
+
+  .post-det {
+    flex: 0 0 auto;               /* no fixed flex-basis */
+    min-height: auto;
+    height: auto;
+    box-shadow: inset 4px 4px 8px rgb(114, 110, 110);
+  }
+
+  .post-det img {
+    width: 100%;
+    height: auto;                 /* keep image aspect ratio */
+    object-fit: cover;            /* fill nicely, no big blank bands */
+  }
+
+  .post-caption {
+    font-size: 14px;
+    padding: 8px 10px;
+  }
+
+  .post-action-container {
+    gap: 16px;
+    padding: 6px 10px 10px 14px;
+  }
+
+  .post-all-actions {
+    font-size: 18px;
+  }
 }
