@@ -313,3 +313,9 @@ form input{
     color: white;
   }
 }
+
+.back-btn{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

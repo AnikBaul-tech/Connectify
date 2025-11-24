@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { toast } from "react-toastify";
 import "./LoginStyle.css";
 
 const Login = () => {
   const [mode, setMode] = useState("text"); // "text" | "login" | "register"
-  const [errorInAuth,setErrorInAuth] = useState(false);
 
   const openLogin = () => setMode("login");
   const openRegister = () => setMode("register");
@@ -20,59 +20,72 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    try{
-    if (isLogin) {
-      const email = e.target.email.value;
-      const password = e.target.password.value;
 
-      const response = await axios.post(
-        "http://localhost:3000/api/auth/user/login",
-        {
-          email,
-          password,
-        },
-        { withCredentials: true }
-      );
+    try {
+      if (isLogin) {
+        const email = e.target.email.value;
+        const password = e.target.password.value;
 
-      console.log(response.data);
-      navigate("/");
-    }
-
-    else if (isRegister) {
-      const userName = e.target.userName.value;
-      const age = e.target.age.value;
-      const email = e.target.email.value;
-      const password = e.target.password.value;
-      const confirmPassword = e.target.confirmPassword.value;
-      const contactNumber = e.target.contactNumber.value;
-
-      if (password === confirmPassword) {
-        console.log(password)
         const response = await axios.post(
-          "http://localhost:3000/api/auth/user/register",
+          "http://localhost:3000/api/auth/user/login",
           {
-            userName, email, password, age, contactNumber
+            email,
+            password,
           },
           { withCredentials: true }
         );
+
         console.log(response.data);
+        toast.success("Login successful 🎉",
+            {position: "top-center",
+            autoClose: 3000,
+            theme: "dark",
+          });
         navigate("/");
+      } else if (isRegister) {
+        const userName = e.target.userName.value;
+        const age = e.target.age.value;
+        const email = e.target.email.value;
+        const password = e.target.password.value;
+        const confirmPassword = e.target.confirmPassword.value;
+        const contactNumber = e.target.contactNumber.value;
+
+        if (password === confirmPassword) {
+          console.log(password);
+          const response = await axios.post(
+            "http://localhost:3000/api/auth/user/register",
+            {
+              userName,
+              email,
+              password,
+              age,
+              contactNumber,
+            },
+            { withCredentials: true }
+          );
+          console.log(response.data);
+          toast.success("Registration successful 🎉",{position: "top-center",
+            autoClose: 3000,
+            theme: "dark",
+          });
+          navigate("/");
+        } else {
+          toast.error("Confirmed password should be same as the password.", {
+            position: "top-center",
+            autoClose: 3000,
+            theme: "dark",
+          });
+        }
       }
-      else{
-        alert("Type same password in both the fields.")
-      }
-    }}
-    catch(err){
-      console.log("Error in Login/Registartion",err)
-      setErrorInAuth(true);
+    } catch (err) {
+      console.log("Error in Login/Registartion", err);
+      toast.error("Error in your authentication !! Try Again.", {
+        position: "top-center",
+        autoClose: 3000,
+        theme: "dark",
+      });
     }
   };
-
-  if(errorInAuth){
-    alert("Error in your authentication !! Try Again.");
-  }
-
 
   return (
     <div className="welcome-page-wrapper">
@@ -190,22 +203,26 @@ const Login = () => {
                   required
                 />
               )}
-              {isRegister &&(<input
-                name="email"
-                type="email"
-                placeholder="email: JohnDoe@gmail.com"
-                autoComplete="email"
-                style={{ width: "95%" }}
-                required
-              />)}
-              {isLogin&&(<input
-                name="email"
-                type="email"
-                placeholder="email: JohnDoe@gmail.com"
-                autoComplete="email"
-                style={{ width: "95%" }}
-                required
-              />)}
+              {isRegister && (
+                <input
+                  name="email"
+                  type="email"
+                  placeholder="email: JohnDoe@gmail.com"
+                  autoComplete="email"
+                  style={{ width: "95%" }}
+                  required
+                />
+              )}
+              {isLogin && (
+                <input
+                  name="email"
+                  type="email"
+                  placeholder="email: JohnDoe@gmail.com"
+                  autoComplete="email"
+                  style={{ width: "95%" }}
+                  required
+                />
+              )}
               {isLogin && (
                 <input
                   name="password"
@@ -243,8 +260,16 @@ const Login = () => {
                   required
                 />
               )}
-              {isLogin && (<button type="submit" className="button">Sign In</button>)}
-              {isRegister && (<button type="submit" className="button">Sign Up</button>)}
+              {isLogin && (
+                <button type="submit" className="button">
+                  Sign In
+                </button>
+              )}
+              {isRegister && (
+                <button type="submit" className="button">
+                  Sign Up
+                </button>
+              )}
               <div className="back-btn button" onClick={backToText}>
                 Back
               </div>

@@ -7,10 +7,12 @@ import { DarkModeContext } from '../context/DarkModeContext.jsx'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faThumbsUp, faComments, faShare } from '@fortawesome/free-solid-svg-icons'
 import PostMedia from '../components/PostMedia.jsx';
+import axios from 'axios';
+import { useNavigate } from "react-router-dom";
 import './HomePageStyle.css'
 
 const HomePage = () => {
-
+  const navigate = useNavigate();
 
   const postContent ={
     type: "image", 
@@ -30,7 +32,15 @@ const HomePage = () => {
         <Header/>
         <StroryContainer/>
         <div className="post-container">
-          <Link to="/user/login">Log</Link>
+          <button onClick={()=>{
+            console.log("Logged Out")
+            try{
+            axios.get("http://localhost:3000/api/auth/user/logout",{withCredentials: true});
+            navigate("/user/login");
+            }catch(err){
+              console.log("Error in Logging out",err);
+            }
+          }}>Log Out</button>
           <div className={darkMode ? `unit-post white-border` : `unit-post black-border`}>
             <div className="posted-by-det">
               <div id="profile-pic-container">
