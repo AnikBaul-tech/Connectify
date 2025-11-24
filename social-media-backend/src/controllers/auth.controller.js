@@ -47,6 +47,7 @@ async function registerUser(req, res) {
 }
 
 async function loginUser(req, res) {
+  console.log("login")
   const { email, password } = req.body;
 
   const user = await userModel.findOne({
@@ -60,7 +61,7 @@ async function loginUser(req, res) {
   }
 
   const isPasswordValid = await bcrypt.compare(password, user.password);
-
+  console.log(isPasswordValid)
 
   if (!isPasswordValid) {
     return res.status(400).json({

@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import "./LoginStyle.css";
 
 const Login = () => {
   const [mode, setMode] = useState("text"); // "text" | "login" | "register"
+  const [errorInAuth,setErrorInAuth] = useState(false);
 
   const openLogin = () => setMode("login");
   const openRegister = () => setMode("register");
@@ -15,6 +17,63 @@ const Login = () => {
   const isRegister = mode === "register";
 
   const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    
+    try{
+    if (isLogin) {
+      const email = e.target.email.value;
+      const password = e.target.password.value;
+
+      const response = await axios.post(
+        "http://localhost:3000/api/auth/user/login",
+        {
+          email,
+          password,
+        },
+        { withCredentials: true }
+      );
+
+      console.log(response.data);
+      navigate("/");
+    }
+
+    else if (isRegister) {
+      const userName = e.target.userName.value;
+      const age = e.target.age.value;
+      const email = e.target.email.value;
+      const password = e.target.password.value;
+      const confirmPassword = e.target.confirmPassword.value;
+      const contactNumber = e.target.contactNumber.value;
+
+      if (password === confirmPassword) {
+        console.log(password)
+        const response = await axios.post(
+          "http://localhost:3000/api/auth/user/register",
+          {
+            userName, email, password, age, contactNumber
+          },
+          { withCredentials: true }
+        );
+        console.log(response.data);
+        navigate("/");
+      }
+      else{
+        alert("Type same password in both the fields.")
+      }
+    }}
+    catch(err){
+      console.log("Error in Login/Registartion",err)
+      setErrorInAuth(true);
+    }
+  };
+
+  if(errorInAuth){
+    alert("Error in your authentication !! Try Again.");
+  }
+
+
   return (
     <div className="welcome-page-wrapper">
       <div className="login-nav">
@@ -111,16 +170,11 @@ const Login = () => {
               !isText ? "panel-visible" : "panel-hidden"
             }`}
           >
-            <form
-              onSubmit={(e) => {
-                e.preventDefault();
-                // handle submit here
-                navigate("/");
-              }}
-            >
+            <form onSubmit={handleSubmit}>
               <h2>{isRegister ? "Create Account" : "Log In"}</h2>
               {isRegister && (
                 <input
+                  name="userName"
                   type="text"
                   placeholder="Username: John Doe"
                   style={{ width: "60%" }}
@@ -129,33 +183,51 @@ const Login = () => {
               )}
               {isRegister && (
                 <input
+                  name="age"
                   type="number"
                   placeholder="age: 22"
                   style={{ width: "30%" }}
                   required
                 />
               )}
-              <input
+              {isRegister &&(<input
+                name="email"
                 type="email"
                 placeholder="email: JohnDoe@gmail.com"
+                autoComplete="email"
                 style={{ width: "95%" }}
                 required
-              />
-               {isLogin && <input
-                type="password"
-                placeholder="Password"
+              />)}
+              {isLogin&&(<input
+                name="email"
+                type="email"
+                placeholder="email: JohnDoe@gmail.com"
+                autoComplete="email"
                 style={{ width: "95%" }}
                 required
-              />}
-              {isRegister && <input
-                type="password"
-                placeholder="Password"
-                style={{ width: "40%" }}
-                required
-              />}
-             
+              />)}
+              {isLogin && (
+                <input
+                  name="password"
+                  type="password"
+                  placeholder="Password: ••••••••"
+                  style={{ width: "95%" }}
+                  required
+                />
+              )}
               {isRegister && (
                 <input
+                  name="password"
+                  type="password"
+                  placeholder="Password: ••••••••"
+                  style={{ width: "40%" }}
+                  required
+                />
+              )}
+
+              {isRegister && (
+                <input
+                  name="confirmPassword"
                   type="password"
                   placeholder="Confirm Password"
                   style={{ width: "50%" }}
@@ -164,19 +236,18 @@ const Login = () => {
               )}
               {isRegister && (
                 <input
+                  name="contactNumber"
                   type="text"
                   placeholder="Contact number: +91 **** *** ***"
                   style={{ width: "95%" }}
                   required
                 />
               )}
-
-              <button type="submit" className="button">
-                {isRegister ? "Sign Up" : "Sign In"}
-              </button>
-              <button className="back-btn button" onClick={backToText}>
+              {isLogin && (<button type="submit" className="button">Sign In</button>)}
+              {isRegister && (<button type="submit" className="button">Sign Up</button>)}
+              <div className="back-btn button" onClick={backToText}>
                 Back
-              </button>
+              </div>
             </form>
           </div>
         </div>
