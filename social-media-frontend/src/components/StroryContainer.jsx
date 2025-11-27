@@ -2,6 +2,7 @@ import React, { useContext, useEffect , useState } from "react";
 import { DarkModeContext } from "../context/DarkModeContext.jsx";
 import Modal from "./Modal.jsx";
 import PostMedia from "./PostMedia.jsx";
+import axios from "axios";
 import "./StoryContainerStyle.css";
 
 const StroryContainer = () => {
@@ -17,14 +18,17 @@ const StroryContainer = () => {
     return () => container.removeEventListener("wheel", handleWheel);
   }, []);  // scrollling on mouse wheel movement
 
+  const [stories,setStories] = useState([])
+  useEffect(()=>{
+    axios.get("http://localhost:3000/api/story", { withCredentials: true })
+    .then((response) => {
+      console.log(response.data)
+      setStories( response.data.stories ?? []);
+    })
+  },[])
   // contentType content 
   
   const { darkMode } = useContext(DarkModeContext);  // Setting DarkMode context
-
-
-  const storyList = [
-    14, 3, 35, 3, 34, 32, 4, 32, 4, 34, 234, 34, 2, 342, 54, 4, 345, 57, 456,
-  ];
 
 
   const [activeStory, setActiveStory] = useState(null);
@@ -41,14 +45,11 @@ const StroryContainer = () => {
     ) // delay in ms
   };
 
-  const c1 = {
-    contentType: "image",
-    content: "./profile-pics/6.jpg"
-  }
   return (
     <div className="story-container">
-      {storyList.map((story) => (
-        <div className="unit-story">
+      {stories.map((story) => (
+        <>
+        <div className="unit-story" key={story._id}>
           <div className="story">
             <div
               className={
@@ -63,21 +64,20 @@ const StroryContainer = () => {
             </div>
           </div>
           <div id="username" className="gradient-text">
-            {story}
+            {story.user.profile.accountName}
           </div>
         </div>
-      ))}
 
-
-      {showModal && activeStory && (
+        {showModal && activeStory && (
         <Modal onClose={() => setShowModal(false)}>
           <div className="story-fullscreen">
-            <PostMedia content={c1}/>
-            <p>{activeStory.description}</p>
+            <PostMedia content={activeStory.media} />
+            <p>{ activeStory.media.caption}</p>
           </div>
         </Modal>
       )}
-
+      </>
+      ))}
 
 
     </div>

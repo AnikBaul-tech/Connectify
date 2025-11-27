@@ -13,7 +13,7 @@ import {
 import PostMedia from "../components/PostMedia.jsx";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import {formatDate} from "../utils/date.format.js"
+import { formatDate } from "../utils/date.format.js";
 import "./HomePageStyle.css";
 
 const HomePage = () => {
@@ -25,7 +25,7 @@ const HomePage = () => {
       .then((response) => {
         console.log(response.data.posts);
 
-        setPostContent(response.data.posts);
+        setPostContent(response.data.posts ?? []);
       })
       .catch(() => {
         console.log("error");
@@ -55,8 +55,10 @@ const HomePage = () => {
         >
           Log Out
         </button>
-
-        {postContent.map((content) => (
+        {postContent.length == 0 && <>
+          <div className="empty"><span className="gradient-text">Nothing is available. Try ..</span> <Link to="/user/login" className={darkMode ? "post-action-dark" : "post-action-light"}>login</Link></div>
+        </>}
+        {postContent.length!=0 && postContent.map((content) => (
           <div
             className={
               darkMode ? `unit-post white-border` : `unit-post black-border`

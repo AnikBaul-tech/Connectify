@@ -16,7 +16,7 @@
     padding: 10px 12px 10px 40px;
     margin: 8px auto 4px auto;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: flex-start;
     align-items: center;
     gap: 20px;
     /* background-color: rgb(0, 0, 0); */
