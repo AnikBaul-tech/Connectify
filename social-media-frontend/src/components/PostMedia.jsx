@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 
 function PostMedia({ content }) {
   const videoRef = useRef(null);
-
+  
   useEffect(() => {
     if (content.contentType !== "video" || !videoRef.current) return;
 

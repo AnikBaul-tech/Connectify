@@ -1,6 +1,7 @@
 import React, { useContext, useEffect , useState } from "react";
 import { DarkModeContext } from "../context/DarkModeContext.jsx";
 import Modal from "./Modal.jsx";
+import PostMedia from "./PostMedia.jsx";
 import "./StoryContainerStyle.css";
 
 const StroryContainer = () => {
@@ -13,11 +14,11 @@ const StroryContainer = () => {
       }
     };
     container.addEventListener("wheel", handleWheel, { passive: false });
-
     return () => container.removeEventListener("wheel", handleWheel);
   }, []);  // scrollling on mouse wheel movement
 
-
+  // contentType content 
+  
   const { darkMode } = useContext(DarkModeContext);  // Setting DarkMode context
 
 
@@ -40,7 +41,10 @@ const StroryContainer = () => {
     ) // delay in ms
   };
 
-
+  const c1 = {
+    contentType: "image",
+    content: "./profile-pics/6.jpg"
+  }
   return (
     <div className="story-container">
       {storyList.map((story) => (
@@ -68,7 +72,7 @@ const StroryContainer = () => {
       {showModal && activeStory && (
         <Modal onClose={() => setShowModal(false)}>
           <div className="story-fullscreen">
-            <img src="./profile-pics/6.jpg" alt="full story"/>
+            <PostMedia content={c1}/>
             <p>{activeStory.description}</p>
           </div>
         </Modal>
