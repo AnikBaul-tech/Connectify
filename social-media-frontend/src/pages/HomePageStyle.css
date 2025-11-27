@@ -190,7 +190,7 @@
   .post-det img {
     width: 100%;
     height: auto;                 /* keep image aspect ratio */
-    object-fit: cover;            /* fill nicely, no big blank bands */
+    object-fit: contain;            /* fill nicely, no big blank bands */
   }
 
   .post-caption {

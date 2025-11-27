@@ -4,7 +4,7 @@ function PostMedia({ content }) {
   const videoRef = useRef(null);
 
   useEffect(() => {
-    if (content.type !== "video" || !videoRef.current) return;
+    if (content.contentType !== "video" || !videoRef.current) return;
 
     const videoEl = videoRef.current;
 
@@ -31,21 +31,21 @@ function PostMedia({ content }) {
       observer.unobserve(videoEl);
       observer.disconnect();
     };
-  }, [content.type]);
+  }, [content.contentType]);
 
-  if (content.type === "image") {
-    return <img src={content.src} alt={content.alt || ""} />;
+  if (content.contentType === "image") {
+    return <img src={content.content} alt={content.alt || ""} />;
   }
 
-  if (content.type === "text") {
-    return <p>{content.text}</p>;
+  if (content.contentType === "text") {
+    return <p>{content.content}</p>;
   }
 
-  if (content.type === "video") {
+  if (content.contentType === "video") {
     return (
       <video
         ref={videoRef}
-        src={content.src}
+        src={content.content}
         muted
         loop
         playsInline
