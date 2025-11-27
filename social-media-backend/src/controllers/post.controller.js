@@ -1,4 +1,5 @@
 const postModel = require("../models/post.model");
+const userModel = require("../models/user.model");
 const storageService = require("../services/storage.services");
 const { v4: uuid } = require("uuid");
 
@@ -57,6 +58,16 @@ async function createPost(req, res) {
   }
 }
 
+// GET api/post
+async function getPosts(req,res){
+  const posts = await postModel.find({}).populate({ path: "user", select: "profile.accountName followings followers" });
+  res.status(200).json({
+    message:"Posts fetched succesfully",
+    posts,
+  })
+}
+
 module.exports = {
   createPost,
+  getPosts
 };
