@@ -1,86 +1,91 @@
-*{
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+.body {
+  background: url("/images/Background-images/back.jpg") no-repeat center/cover fixed;
+  overflow: hidden;
 }
 .welcome-page-wrapper {
-    height: 100vh;
-    min-height: max-content;
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    background: url("/images/Background-images/back.jpg");
-    padding: 10px 20px;
-    background-size: cover;      
-    background-repeat: no-repeat;
-    gap: 30px;
-    margin: 0;
+  height: 100vh;
+  min-height: max-content;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  padding: 10px 20px;
+  gap: 30px;
+  margin: 0;
+  overflow-x: hidden;
+  overflow-y: hidden;
 }
 
-.login-nav{
-    width: 100%;
-    padding: 15px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: rgba(255, 250, 250, 0.321);
-    backdrop-filter: blur(30px);
-    border-radius: 10px;
-    gap: 30px;
+.login-nav {
+  width: 100%;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgba(255, 250, 250, 0.321);
+  backdrop-filter: blur(30px);
+  border-radius: 10px;
+  gap: 30px;
 }
 
-.button{
-    height: 50px;
-    width: 80px;
-    padding: 5px 8px;
-    border: none;
-    border-radius: 10px;
-    background: linear-gradient(30deg,rgb(55, 93, 182),rgb(206, 28, 206));
-    color: whitesmoke;
-    font-size: 15px;
-    font-weight: 500;
-    cursor: pointer;
-    box-shadow: 1px 1px 3px rgb(35, 34, 34);
+.button {
+  height: 50px;
+  width: 80px;
+  padding: 5px 8px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(30deg, rgb(55, 93, 182), rgb(206, 28, 206));
+  color: whitesmoke;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: 1px 1px 3px rgb(35, 34, 34);
 }
 
-.showcasebox-form-container{
-    height: max-content;
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    /* align-items: stretch; */
-    gap: 20px;
-    padding: 20px;
+.showcasebox-form-container {
+  height: max-content;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  /* align-items: stretch; */
+  gap: 20px;
+  padding: 20px;
 }
-.showcase-box{
-    height: 550px;
-    width: 600px;
-    overflow: auto;
-    flex: 1 1 380px;    
-    min-width: 280px; 
-    background: rgba(255, 255, 255, 0.3);
-    backdrop-filter: blur(30px);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
+.showcase-box {
+  height: 550px;
+  width: 600px;
+  overflow: auto;
+  flex: 1 1 380px;
+  min-width: 280px;
+  background: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(30px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
 }
-.showcase-box-video{
-    height: 550px;
-    width: 600px;
-    object-fit: contain;
-    object-position: right; 
-    display: block;
+.showcase-box-video {
+  height: 550px;
+  width: 600px;
+  object-fit: contain;
+  object-position: right;
+  display: block;
 }
-.showcase-box::-webkit-scrollbar{
-    display: none;
+.showcase-box::-webkit-scrollbar {
+  display: none;
 }
-.box1,.box2,.box3{
-    height: 550px;
-    width: 600px;
-    position: relative;
+.box1,
+.box2,
+.box3 {
+  height: 550px;
+  width: 600px;
+  position: relative;
 }
 
 .video-caption {
@@ -95,43 +100,43 @@
     rgba(0, 0, 0, 0.7),
     rgba(0, 0, 0, 0)
   ); */
-  color: rgb(2, 8, 182,0.6);
+  color: rgb(2, 8, 182, 0.6);
   font-size: 3rem;
-  transform: translateY(100%);       /* start off-screen */
+  transform: translateY(100%); /* start off-screen */
   opacity: 0;
   animation: slide-caption 6s ease-in-out infinite;
   text-shadow: 5px 5px 8px rgb(161, 161, 221), 8px 8px 10px rgb(193, 107, 180);
 }
 
-.side-panel{
-    height: 500px;
-    width: fit-content;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    flex: 1 1 380px;
+.side-panel {
+  height: 500px;
+  width: fit-content;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  flex: 1 1 380px;
   position: relative;
   overflow-x: hidden;
   overflow-y: auto;
 }
 .panel-content {
-    position: absolute;
-    padding: 40px;
-    transition: opacity 0.5s ease, transform 0.5s ease;
-    display: flex;
-    flex-wrap: wrap;
-    width: 500px;
-    padding-left: 30px;
-    color: rgb(255, 255, 255);
-    font-size: 20px;
-    line-height: 30px;
-    border-left: 4px solid white;
-    flex: 1 1 auto;
+  position: absolute;
+  padding: 40px;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  display: flex;
+  flex-wrap: wrap;
+  width: 500px;
+  padding-left: 30px;
+  color: rgb(255, 255, 255);
+  font-size: 20px;
+  line-height: 30px;
+  border-left: 4px solid white;
+  flex: 1 1 auto;
 }
-.panel-content p{
-    display: flex;
-    flex-wrap: wrap;
+.panel-content p {
+  display: flex;
+  flex-wrap: wrap;
 }
 .panel-visible {
   opacity: 1;
@@ -146,28 +151,28 @@
   pointer-events: none; /* so hidden one doesn't receive clicks */
 }
 
-form{
-    height: max-content;
-    width: 500px;
-    padding: 10px 12px;
-    border-radius: 10px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    gap: 15px;
-    background: rgba(255,255,255,0.3);
-    backdrop-filter: blur(30px);
+form {
+  height: max-content;
+  width: 500px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  background: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(30px);
 }
-form input{
-    height: 45px;
-    width: 450px;
-    padding: 4px;
-    border: none;
-    font-size: 20px;
-    background: transparent;
-    border: 1px solid black;
-    border-radius: 10px;
+form input {
+  height: 45px;
+  width: 450px;
+  padding: 4px;
+  border: none;
+  font-size: 20px;
+  background: transparent;
+  border: 1px solid black;
+  border-radius: 10px;
 }
 
 .btn-row button {
@@ -187,9 +192,13 @@ form input{
   }
 }
 
-
 .gradient-text {
-  background: linear-gradient(10deg,rgb(55, 93, 182),rgb(206, 28, 206),rgb(0, 0, 0));
+  background: linear-gradient(
+    10deg,
+    rgb(55, 93, 182),
+    rgb(206, 28, 206),
+    rgb(0, 0, 0)
+  );
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -203,7 +212,6 @@ form input{
   animation-delay: 2s;
 }
 
-
 @keyframes slide-caption {
   0% {
     transform: translateX(-100%);
@@ -212,13 +220,51 @@ form input{
   10%,
   40% {
     transform: translateY(-20px);
-    opacity: 1;                /* visible in the middle part */
+    opacity: 1; /* visible in the middle part */
   }
   50%,
   100% {
     transform: translateX(-100%);
-    opacity: 0;                /* slide back down */
+    opacity: 0; /* slide back down */
   }
+}
+
+
+
+.back-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.cursor {
+  height: 20px;
+  width: 20px;
+  background-color: rgba(255, 250, 250, 0.321);
+  backdrop-filter: blur(30px);
+  border-radius: 50%;
+  position: fixed;
+  z-index: 999;
+}
+
+.explore-wrapper {
+  height: 100vh;
+  width: max-content;
+  display: inline-block;
+  overflow-x: hidden;
+  white-space: nowrap;
+  background: transparent;
+}
+.explore-wrapper h1 {
+  font-size: 80vh;
+}
+.copyright{
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: black;
+  color: white;
+  text-align: center;
 }
 
 @media (max-width: 768px) {
@@ -235,7 +281,7 @@ form input{
   }
 
   .showcasebox-form-container {
-    flex-direction: column;       /* stack video + form */
+    flex-direction: column; /* stack video + form */
     align-items: center;
     padding: 10px 0 20px;
     gap: 16px;
@@ -270,12 +316,12 @@ form input{
     padding: 0 4px 20px;
     overflow-x: auto;
   }
-  .side-panel::-webkit-scrollbar{
+  .side-panel::-webkit-scrollbar {
     display: none;
   }
 
   .panel-content {
-    position: absolute;                 
+    position: absolute;
     width: 100%;
     font-weight: 800;
     padding: 16px 12px;
@@ -283,7 +329,12 @@ form input{
     border-top: 4px solid #fff;
     font-size: clamp(1rem, 4vw, 1.25rem);
     line-height: 1.4;
-    background: linear-gradient(10deg,rgb(55, 93, 182),rgb(206, 28, 206),rgb(0, 0, 0));
+    background: linear-gradient(
+      10deg,
+      rgb(55, 93, 182),
+      rgb(206, 28, 206),
+      rgb(0, 0, 0)
+    );
     background-clip: text;
     -webkit-text-fill-color: transparent;
   }
@@ -295,7 +346,6 @@ form input{
     margin: 0 auto;
     padding: 12px;
     -webkit-text-fill-color: initial;
-    
   }
 
   form input {
@@ -312,10 +362,8 @@ form input{
     font-weight: 700;
     color: white;
   }
-}
 
-.back-btn{
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  .explore-wrapper h1{
+    font-size: 20vh;
+  }
 }

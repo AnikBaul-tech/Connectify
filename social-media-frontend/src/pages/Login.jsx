@@ -1,11 +1,60 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { gsap } from "gsap";
+import { useGSAP } from "@gsap/react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import "./LoginStyle.css";
 
 const Login = () => {
+  useEffect(() => {
+    const main = document.querySelector(".welcome-page-wrapper");
+    const cursor = document.querySelector(".cursor");
+
+    const move = (e) => {
+      gsap.to(cursor, {
+        x: e.x,
+        y: e.y,
+        duration: 0.2,
+      });
+    };
+
+    main.addEventListener("mousemove", move);
+    return () => main.removeEventListener("mousemove", move);
+  }, []);
+
+  useGSAP(() => {
+    const tl = gsap.timeline();
+    tl.from("#logo", {
+      y: -30,
+      opacity: 0,
+    });
+    tl.from(".nav-right button", {
+      opacity: 0,
+      x: 30,
+      stagger: 1,
+    });
+  });
+
+  useGSAP(() => {
+    gsap.registerPlugin(ScrollTrigger);
+    
+    const title = document.querySelector(".explore-wrapper h1");
+    gsap.to(title, {
+      xPercent: -90,
+      scrollTrigger: {
+        trigger: ".explore-wrapper",
+        scroller: "body",
+        start: "top 120vh",
+      end: ()=> "+=" + document.querySelector(".explore-wrapper").offsetWidth,
+        scrub: 1,
+        pin: true
+      },
+    });
+  });
+
   const [mode, setMode] = useState("text"); // "text" | "login" | "register"
 
   const openLogin = () => setMode("login");
@@ -20,7 +69,6 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     try {
       if (isLogin) {
         const email = e.target.email.value;
@@ -36,11 +84,11 @@ const Login = () => {
         );
 
         console.log(response.data);
-        toast.success("Login successful 🎉",
-            {position: "top-center",
-            autoClose: 3000,
-            theme: "dark",
-          });
+        toast.success("Login successful 🎉", {
+          position: "top-center",
+          autoClose: 3000,
+          theme: "dark",
+        });
         navigate("/");
       } else if (isRegister) {
         const userName = e.target.userName.value;
@@ -64,7 +112,8 @@ const Login = () => {
             { withCredentials: true }
           );
           console.log(response.data);
-          toast.success("Registration successful 🎉",{position: "top-center",
+          toast.success("Registration successful 🎉", {
+            position: "top-center",
             autoClose: 3000,
             theme: "dark",
           });
@@ -88,7 +137,10 @@ const Login = () => {
   };
 
   return (
+    <div className="body">
     <div className="welcome-page-wrapper">
+
+      <div className="cursor"></div>
       <div className="login-nav">
         <div className="nav-left">
           <Link to="/" id="logo">
@@ -276,6 +328,14 @@ const Login = () => {
             </form>
           </div>
         </div>
+      </div>
+      
+    </div>
+    <div className="explore-wrapper">
+        <h1>Experience the Way you never before</h1>
+      </div>
+      <div className="copyright">
+        <p>All Copyrights of this Product is &#169; @AnikBaul</p>
       </div>
     </div>
   );
