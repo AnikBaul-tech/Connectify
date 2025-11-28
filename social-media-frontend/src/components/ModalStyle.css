@@ -8,6 +8,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   z-index: 1000;
 }
 
@@ -29,4 +30,37 @@
   max-height: 80vh;
   height: 100%;
   object-fit: contain;
+}
+
+.profile-buttons{
+  width: 200px;
+  padding: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  background-color: rgba(34, 34, 34, 0.4);
+  backdrop-filter: blur(30px);
+}
+.button-name-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  color: white;
+}
+.new-button{
+ height: 50px;
+ width: 50px;
+ box-sizing: border-box;
+ border-radius: 50%;
+ border: 2px dashed black;
+ background: rgba(255, 255, 255, 0.4);
+ backdrop-filter: blur(30px);
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ color: black;
+ font-size: 20px;
 }

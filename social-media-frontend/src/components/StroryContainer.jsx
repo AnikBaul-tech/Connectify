@@ -39,7 +39,7 @@ const StroryContainer = () => {
     setShowModal(false); // reset
     setTimeout(() => {
       setShowModal(false); // show after delay
-    }, 3000)
+    }, 5000)
     .then(
       setShowModal(true)
     ) // delay in ms

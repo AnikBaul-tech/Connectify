@@ -15,6 +15,11 @@ router.post(
   postController.createPost
 );
 
-router.get("/",authMiddleware.authUserMiddleware, postController.getPosts)
+router.get("/", authMiddleware.authUserMiddleware, postController.getPosts);
 
+router.post(
+  "/like",
+  authMiddleware.authUserMiddleware,
+  postController.likePost
+);
 module.exports = router;

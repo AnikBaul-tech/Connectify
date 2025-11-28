@@ -16,6 +16,7 @@ import { useNavigate } from "react-router-dom";
 import { formatDate } from "../utils/date.format.js";
 import "./HomePageStyle.css";
 
+
 const HomePage = () => {
   const [postContent, setPostContent] = useState([]);
 
@@ -32,8 +33,23 @@ const HomePage = () => {
       });
   }, []);
 
-  const navigate = useNavigate();
+  const handleLike = (item) =>{
+    axios.post("http://localhost:3000/api/post/like",{postId: item._id},{withCredentials:true})
+    .then((response)=>{
+      console.log(response.data)
+      if(response.data.like){
+            setPostContent((prev) => prev.map((v) => v._id === item._id ? { ...v, likeCount: v.likeCount + 1 } : v))
+            console.log("Liked",item._id)
+        }else{
+            setPostContent((prev) => prev.map((v) => v._id === item._id ? { ...v, likeCount: v.likeCount - 1 } : v))
+            console.log("Uniked",item._id)
+        }
+    }).catch(()=>{
+      console.log("Error")
+    })
+  }
 
+  const navigate = useNavigate();
   const { darkMode } = useContext(DarkModeContext);
   return (
     <div className={darkMode ? `home-page dark-page` : `home-page light-page`}>
@@ -96,7 +112,7 @@ const HomePage = () => {
                 <p>{content.media.caption}</p>
               </div>
               <div className="post-action-container">
-                <a href="">
+                
                   <div
                     className={
                       darkMode
@@ -105,11 +121,11 @@ const HomePage = () => {
                     }
                     id="like"
                   >
-                    <FontAwesomeIcon icon={faThumbsUp} />
-                    {content.likeCount}
+                    <FontAwesomeIcon icon={faThumbsUp} onClick={() => handleLike(content)}/>
+                    {content.likeCount ?? 0}
                   </div>
-                </a>
-                <a href="">
+               
+                <Link to="">
                   <div
                     className={
                       darkMode
@@ -120,8 +136,8 @@ const HomePage = () => {
                   >
                     <FontAwesomeIcon icon={faComments} />
                   </div>
-                </a>
-                <a href="">
+                </Link>
+                <Link to="#">
                   <div
                     className={
                       darkMode
@@ -132,7 +148,7 @@ const HomePage = () => {
                   >
                     <FontAwesomeIcon icon={faShare} />
                   </div>
-                </a>
+                </Link>
               </div>
             </div>
           </div>

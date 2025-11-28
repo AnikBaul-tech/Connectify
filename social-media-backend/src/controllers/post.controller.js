@@ -1,5 +1,6 @@
 const postModel = require("../models/post.model");
 const userModel = require("../models/user.model");
+const likeModel = require("../models/like.model")
 const storageService = require("../services/storage.services");
 const { v4: uuid } = require("uuid");
 
@@ -66,8 +67,34 @@ async function getPosts(req,res){
     posts,
   })
 }
+ async function likePost(req,res){
+  try{
+    const {postId} = req.body;
+    const userId = req.user._id;
 
+    if(!postId){
+      return res.status(400).json({message: "Post is Missing"});
+
+    }
+    const existing = await likeModel.findOne({user: userId, post:postId});
+
+    if(existing){
+      await likeModel.deleteOne({_id: existing._id});
+      await postModel.findByIdAndUpdate(postId , { $inc: {likeCount: -1}});
+      return res.status(200).json({like: false})
+    }
+
+    await likeModel.create({user:userId,post:postId});
+      await postModel.findByIdAndUpdate(postId , { $inc: {likeCount: 1}});
+      return res.status(200).json({like: true})
+  }catch(err){
+      console.log("Error in Post Like",err);
+      return res.status(500).json({message: "Error toggle like",error: err.message})
+  }
+
+ }
 module.exports = {
   createPost,
-  getPosts
+  getPosts,
+  likePost
 };
