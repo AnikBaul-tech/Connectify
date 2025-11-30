@@ -141,7 +141,7 @@
 }
 
 .gradient-text {
-  background: linear-gradient(30deg,rgb(55, 93, 182),rgb(206, 28, 206));
+  background: linear-gradient(30deg,rgb(55, 93, 182),rgb(208, 152, 208));
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -209,6 +209,11 @@
 }
 
 .empty{
+  height: 100vh;
+  width: 100vw;
   font-size: 25px;
-  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: url("/images/Background-images/back.jpg");
 }

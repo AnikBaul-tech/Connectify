@@ -10,7 +10,7 @@ import "./LoginStyle.css";
 
 const Login = () => {
   useEffect(() => {
-    const main = document.querySelector(".welcome-page-wrapper");
+    const main = document.querySelector(".body");
     const cursor = document.querySelector(".cursor");
 
     const move = (e) => {
@@ -30,11 +30,14 @@ const Login = () => {
     tl.from("#logo", {
       y: -30,
       opacity: 0,
+      delay: 0.3,
+      duration: 1
     });
     tl.from(".nav-right button", {
       opacity: 0,
-      x: 30,
+      x: -20,
       stagger: 1,
+      duration: 0.8
     });
   });
 
@@ -43,11 +46,11 @@ const Login = () => {
     
     const title = document.querySelector(".explore-wrapper h1");
     gsap.to(title, {
-      xPercent: -90,
+      xPercent: -80,
       scrollTrigger: {
         trigger: ".explore-wrapper",
         scroller: "body",
-        start: "top 120vh",
+        start: "top 100vh",
       end: ()=> "+=" + document.querySelector(".explore-wrapper").offsetWidth,
         scrub: 1,
         pin: true
@@ -331,8 +334,9 @@ const Login = () => {
       </div>
       
     </div>
+
     <div className="explore-wrapper">
-        <h1>Experience the Way you never before</h1>
+        <h1>Be <span className="gradient-text-auth">Heard</span> Be <span className="gradient-text-auth">CONNECTED</span></h1>
       </div>
       <div className="copyright">
         <p>All Copyrights of this Product is &#169; @AnikBaul</p>

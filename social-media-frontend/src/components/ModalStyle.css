@@ -13,6 +13,8 @@
 }
 
 .modal-content {
+  min-height: 400px;
+  min-width: 400px;
   background: linear-gradient(30deg,rgb(55, 93, 182),rgb(206, 28, 206));
   padding: 5px;
   max-width: 90%;
@@ -39,7 +41,7 @@
   justify-content: center;
   align-items: center;
   gap: 15px;
-  background-color: rgba(34, 34, 34, 0.4);
+  background-color: rgba(247, 247, 247, 0.4);
   backdrop-filter: blur(30px);
 }
 .button-name-container{
@@ -48,7 +50,7 @@
   justify-content: center;
   align-items: center;
   gap: 5px;
-  color: white;
+  color: rgb(36, 36, 36);
 }
 .new-button{
  height: 50px;

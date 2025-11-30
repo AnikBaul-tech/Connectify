@@ -192,11 +192,11 @@ form input {
   }
 }
 
-.gradient-text {
+.gradient-text-auth {
   background: linear-gradient(
     10deg,
-    rgb(55, 93, 182),
-    rgb(206, 28, 206),
+    rgb(82, 111, 177),
+    rgb(124, 21, 124),
     rgb(0, 0, 0)
   );
   background-clip: text;
@@ -255,7 +255,7 @@ form input {
   background: transparent;
 }
 .explore-wrapper h1 {
-  font-size: 80vh;
+  font-size: 70vh;
 }
 .copyright{
   height: 80px;
@@ -363,7 +363,7 @@ form input {
     color: white;
   }
 
-  .explore-wrapper h1{
-    font-size: 20vh;
+  .explore-wrapper{
+    display: none;
   }
 }

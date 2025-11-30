@@ -52,8 +52,12 @@ const HomePage = () => {
   const navigate = useNavigate();
   const { darkMode } = useContext(DarkModeContext);
   return (
-    <div className={darkMode ? `home-page dark-page` : `home-page light-page`}>
-      <Header />
+    <>
+    {postContent.length == 0 && <>
+          <div className="empty"><span className="gradient-text">Nothing is available. Try ..</span> <Link to="/user/login" className={darkMode ? "post-action-dark" : "post-action-light"}>login</Link></div>
+        </>}
+    {postContent.length!=0 && <div className={darkMode ? `home-page dark-page` : `home-page light-page`}>
+      <Header profileOnClick={true}/>
       <StroryContainer />
       <div className="post-container">
         <button
@@ -71,10 +75,8 @@ const HomePage = () => {
         >
           Log Out
         </button>
-        {postContent.length == 0 && <>
-          <div className="empty"><span className="gradient-text">Nothing is available. Try ..</span> <Link to="/user/login" className={darkMode ? "post-action-dark" : "post-action-light"}>login</Link></div>
-        </>}
-        {postContent.length!=0 && postContent.map((content) => (
+        
+        {postContent.map((content) => (
           <div
             className={
               darkMode ? `unit-post white-border` : `unit-post black-border`
@@ -155,7 +157,8 @@ const HomePage = () => {
         ))}
       </div>
       <Taskbar />
-    </div>
+    </div>}
+    </>
   );
 };
 

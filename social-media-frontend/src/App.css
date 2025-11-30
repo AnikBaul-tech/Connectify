@@ -14,3 +14,8 @@ html,body {
     height: 100%;
     width: 100%;
 }
+.gradient-text {
+  background: linear-gradient(30deg,rgb(69, 100, 170),rgb(149, 80, 149));
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
