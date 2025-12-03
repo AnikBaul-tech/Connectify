@@ -54,7 +54,7 @@ async function createStory(req, res) {
 async function getStory(req, res) {
   const stories = await storyModel
     .find({})
-    .populate({ path: "user", select: "profile.accountName" });
+    .populate({ path: "user", select: "profile.accountName profile.profileAvatar" });
   res.status(200).json({
     message: "Stories fetched succesfully",
     stories,

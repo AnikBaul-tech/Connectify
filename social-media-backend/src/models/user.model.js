@@ -22,7 +22,10 @@ const userSchema = new mongoose.Schema({
       type: String,
       default: "",
     },
-    profileAvatar: String,
+    profileAvatar: {
+      type: String,
+      default: "/profile-pics/default.png"
+    },
   },
   account: {
     createdAt: {

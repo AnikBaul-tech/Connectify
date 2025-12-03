@@ -1,6 +1,7 @@
 import React, { useContext, useRef, useState } from "react";
-import Header from "../components/header.jsx";
+import Header from "../components/Header.jsx";
 import { DarkModeContext } from "../context/DarkModeContext.jsx";
+import { AuthContext } from "../context/AuthModeContext.jsx";
 import InfiniteRoller from "../components/InfiniteRoller.jsx";
 import MediaDropdown from "../components/MediaDropDown.jsx";
 import { gsap } from "gsap";
@@ -123,11 +124,13 @@ const UploadNewPost = () => {
       yoyo: true
     })
   })
+    const {user} = useContext(AuthContext) ;
 
   return (
-    <div className={darkMode ? "post-page dark-page" : "post-page light-page"}>
+    <>
+    { user  &&  <div className={darkMode ? "post-page dark-page" : "post-page light-page"}>
       {loader && <Loader />}
-      <Header />
+      <Header profile = {user.profile}/>
       <div
         className={
           darkMode ? "story-post color-dark" : "story-post color-light"
@@ -237,7 +240,8 @@ const UploadNewPost = () => {
           />
         </div>
       </div>
-    </div>
+    </div>}
+    </>
   );
 };
 

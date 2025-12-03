@@ -61,7 +61,7 @@ async function createPost(req, res) {
 
 // GET api/post
 async function getPosts(req,res){
-  const posts = await postModel.find({}).populate({ path: "user", select: "profile.accountName followings followers" });
+  const posts = await postModel.find({}).populate({ path: "user", select: "profile followings followers" });
   res.status(200).json({
     message:"Posts fetched succesfully",
     posts,

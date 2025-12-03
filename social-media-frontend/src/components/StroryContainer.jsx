@@ -60,7 +60,7 @@ const StroryContainer = () => {
               onClick={() => handleClick(story)}
 
             >
-              <img src="./profile-pics/6.jpg" alt="" />
+              <img src={story.user.profile.profileAvatar} alt="" />
             </div>
           </div>
           <div id="username" className="gradient-text">

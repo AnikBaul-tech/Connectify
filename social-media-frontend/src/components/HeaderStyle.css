@@ -75,7 +75,13 @@
   width: 100%;
   object-fit: contain;
 }
-
+.profile{
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
 #profile-pic{
   height: 40px;
   width: 40px;
@@ -86,5 +92,9 @@
 #profile-pic img{
   height: 100%;
   width: 100%;
-  object-fit: contain;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.profile-name{
+  font-size: 15px;
 }

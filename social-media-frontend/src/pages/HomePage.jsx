@@ -1,9 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import Header from "../components/header.jsx";
+import Header from "../components/Header.jsx";
 import StroryContainer from "../components/StroryContainer.jsx";
 import Taskbar from "../components/Taskbar.jsx";
 import { DarkModeContext } from "../context/DarkModeContext.jsx";
+import { AuthContext } from "../context/AuthModeContext.jsx";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faThumbsUp,
@@ -19,6 +20,9 @@ import "./HomePageStyle.css";
 
 const HomePage = () => {
   const [postContent, setPostContent] = useState([]);
+  const {user} = useContext(AuthContext) ;
+  console.log(user)
+
 
   useEffect(() => {
     axios
@@ -53,11 +57,8 @@ const HomePage = () => {
   const { darkMode } = useContext(DarkModeContext);
   return (
     <>
-    {postContent.length == 0 && <>
-          <div className="empty"><span className="gradient-text">Nothing is available. Try ..</span> <Link to="/user/login" className={darkMode ? "post-action-dark" : "post-action-light"}>login</Link></div>
-        </>}
-    {postContent.length!=0 && <div className={darkMode ? `home-page dark-page` : `home-page light-page`}>
-      <Header profileOnClick={true}/>
+    {user  && <div className={darkMode ? `home-page dark-page` : `home-page light-page`}>
+      <Header profile = {user.profile} profileOnClick={true}/>
       <StroryContainer />
       <div className="post-container">
         <button
@@ -86,7 +87,7 @@ const HomePage = () => {
             <div className="posted-by-det">
               <div id="profile-pic-container">
                 <img
-                  src="./profile-pics/default.png"
+                  src={content.user.profile.profileAvatar}
                   alt=""
                   className="profile-pic"
                 />
@@ -158,6 +159,9 @@ const HomePage = () => {
       </div>
       <Taskbar />
     </div>}
+    {user === false && <>
+          <div className="empty"><span className="gradient-text">Nothing is available. Try ..</span> <Link to="/user/login" className={darkMode ? "post-action-dark" : "post-action-light"}>login</Link></div>
+        </>}
     </>
   );
 };

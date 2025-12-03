@@ -9,7 +9,7 @@ import {
 import Modal from "./Modal.jsx";
 import { DarkModeContext } from "../context/DarkModeContext.jsx";
 import "./HeaderStyle.css";
-const Header = ({ profileOnClick = false }) => {
+const Header = ({ profile ,profileOnClick = false }) => {
   const { darkMode, toggleDarkMode } = useContext(DarkModeContext);
   const handleClick = () => {
     toggleDarkMode();
@@ -37,13 +37,16 @@ const Header = ({ profileOnClick = false }) => {
               onClick={handleClick}
             />
           </div>
+          <div className="profile">
           <div
             id="profile-pic"
             onClick={() => {
               profileOnClick && postModal();
             }}
           >
-            <img src="./profile-pics/default.png" alt="" />
+            <img src={profile.profileAvatar} alt="" />
+          </div>
+          <span className="profile-name">{profile.accountName}</span>
           </div>
         </div>
       </div>
@@ -51,7 +54,7 @@ const Header = ({ profileOnClick = false }) => {
       {showModal && (
         <Modal onClose={() => setShowModal(false)} isProfile={true}>
           <div className="story-fullscreen">
-            <img src="./profile-pics/default.png" alt="" />
+            <img src={profile.profileAvatar} alt="" />
           </div>
         </Modal>
       )}
