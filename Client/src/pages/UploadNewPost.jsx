@@ -15,7 +15,7 @@ import "./UploadNewPostStyle.css";
 const UploadNewPost = () => {
   const { darkMode } = useContext(DarkModeContext);
   const rollerRef = useRef();
-  const [roller, setRoller] = useState("posts");
+  const [roller, setRoller] = useState("stories");
   const dropRef = useRef();
   const [dropDown, setDropDown] = useState("image");
 

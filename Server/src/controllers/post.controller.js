@@ -71,6 +71,7 @@ async function getPosts(req,res){
   try{
     const {postId} = req.body;
     const userId = req.user._id;
+    const user = await userModel.findOne({_id: userId});
 
     if(!postId){
       return res.status(400).json({message: "Post is Missing"});
@@ -81,11 +82,15 @@ async function getPosts(req,res){
     if(existing){
       await likeModel.deleteOne({_id: existing._id});
       await postModel.findByIdAndUpdate(postId , { $inc: {likeCount: -1}});
+      user.likedPosts = user.likedPosts?.filter(post => post!= postId);
+      await user.save();
       return res.status(200).json({like: false})
     }
 
     await likeModel.create({user:userId,post:postId});
       await postModel.findByIdAndUpdate(postId , { $inc: {likeCount: 1}});
+      user.likedPosts.push(postId);
+      await user.save();
       return res.status(200).json({like: true})
   }catch(err){
       console.log("Error in Post Like",err);

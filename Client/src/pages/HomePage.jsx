@@ -15,12 +15,13 @@ import PostMedia from "../components/PostMedia.jsx";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { formatDate } from "../utils/date.format.js";
+import Loader from "../components/Loader.jsx";
 import "./HomePageStyle.css";
 
 
 const HomePage = () => {
   const [postContent, setPostContent] = useState([]);
-  const {user} = useContext(AuthContext) ;
+  const {user,loading} = useContext(AuthContext) ;
   console.log(user)
 
 
@@ -55,6 +56,18 @@ const HomePage = () => {
 
   const navigate = useNavigate();
   const { darkMode } = useContext(DarkModeContext);
+
+  if(!user){
+    return ( <>
+          <div className="empty"><span className="gradient-text">Nothing is available. Try ..</span> <Link to="/user/login" className={darkMode ? "post-action-dark" : "post-action-light"}>login</Link></div>
+        </>)
+  }
+
+  if (loading){
+    return(
+      <Loader/>
+    )
+  }
   return (
     <>
     {user  && <div className={darkMode ? `home-page dark-page` : `home-page light-page`}>
@@ -159,9 +172,6 @@ const HomePage = () => {
       </div>
       <Taskbar />
     </div>}
-    {user === false && <>
-          <div className="empty"><span className="gradient-text">Nothing is available. Try ..</span> <Link to="/user/login" className={darkMode ? "post-action-dark" : "post-action-light"}>login</Link></div>
-        </>}
     </>
   );
 };

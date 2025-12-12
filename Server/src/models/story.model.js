@@ -29,6 +29,10 @@ const storySchema = new mongoose.Schema({
     timestamps: true
 });
 
+storySchema.index(
+  { createdAt: 1 },
+  { expireAfterSeconds: 60 * 60 * 24 }   
+);
 
 const storyModel = mongoose.model("story", storySchema);
 
