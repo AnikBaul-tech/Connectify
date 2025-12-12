@@ -16,6 +16,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { formatDate } from "../utils/date.format.js";
 import Loader from "../components/Loader.jsx";
+import { shuffleArray } from "../utils/shuffle.algo.js";
 import "./HomePageStyle.css";
 
 
@@ -30,8 +31,9 @@ const HomePage = () => {
       .get("http://localhost:3000/api/post", { withCredentials: true })
       .then((response) => {
         console.log(response.data.posts);
+        const shuffledPosts = shuffleArray(response.data.posts ?? []);
 
-        setPostContent(response.data.posts ?? []);
+        setPostContent(shuffledPosts);
       })
       .catch(() => {
         console.log("error");
